@@ -87,9 +87,12 @@ function vas#onPopupPost()
   if pumvisible()
     inoremap <silent> <expr> <C-h> vas#onBs()
     inoremap <silent> <expr> <BS>  vas#onBs()
-    " a command to restore to original text and select the first match
-    return (s:behavsCurrent[0].command =~# "\<C-p>" ? "\<C-n>\<Up>"
-          \                                         : "\<C-p>\<Down>")
+        " a command to restore to original text and select the first match
+        " return (s:behavsCurrent[0].command =~# "\<C-p>" ? "\<C-n>\<Up>"
+        "       \                                         : "\<C-p>\<Down>")
+    " a command to restore to original text and noselect the first match
+    return (s:behavsCurrent[0].command =~# "\<C-p>" ? "\<C-n>"
+          \                                         : "\<C-p>")
   elseif exists('s:behavsCurrent[1]')
     call remove(s:behavsCurrent, 0)
     call s:setCompletefunc()
